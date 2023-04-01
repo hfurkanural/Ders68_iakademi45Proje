@@ -1,0 +1,182 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "ProductIndex";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    iakademi45Context context = new iakademi45Context();
+    string CategoryName = "";
+    string BrandName = "";
+    string StatusName = "";
+}
+
+<p>
+    <a asp-action="ProductCreate" asp-controller="Admin" class="btn btn-success">YENİ ÜRÜN</a>
+</p>
+
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN SAMPLE TABLE PORTLET-->
+        <div class="portlet box red">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs"></i>ÜRÜNLER || ÜRÜN SAYISI : @ViewBag.productCount
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-scrollable">
+                    <table class="table table-dark table-hover">
+                        <thead style="background-color:grey;color:white;">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ProductID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ProductName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UnitPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.CategoryID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.SupplierID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Stock)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.StatusID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Related)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Active)
+                                </th>
+                                <th style="text-align:center;">
+                                    İŞLEMLER
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td style="text-align:center;">
+                                        @Html.DisplayFor(model => item.ProductID)
+                                    </td>
+                                    <td style="text-align:center;">
+                                        @Html.DisplayFor(model => item.ProductName)
+                                    </td>
+                                    <td style="text-align:center;">
+                                        @Html.DisplayFor(model => item.UnitPrice)
+                                    </td>
+                                    <td style="text-align:center;">
+                                        @{
+                                            CategoryName = context.Categories.FirstOrDefault(c => c.CategoryID == item.CategoryID).CategoryName;
+                                            @CategoryName
+                                        }
+                                    </td>
+                                    <td style="text-align:center;">
+                                        @{
+                                            BrandName = context.Suppliers.FirstOrDefault(s => s.SupplierID == item.SupplierID).BrandName;
+                                            @BrandName
+                                        }
+                                    </td>
+                                    @if (item.Stock <= 10 && item.Stock >= 6)
+                                    {
+                                        <td style="background-color:yellow;text-align:center;" >
+                                            @Html.DisplayFor(model => item.Stock)
+                                        </td>
+
+                                    }
+                                    else if (item.Stock <= 5)
+                                    {
+                                        <td style="background-color:red;text-align:center;">
+                                            @Html.DisplayFor(model => item.Stock)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td style="text-align:center;">
+                                            @Html.DisplayFor(model => item.Stock)
+                                        </td>
+                                    }
+                                    <td style="text-align:center;">
+                                        @{
+                                            StatusName = context.Statuses.FirstOrDefault(st => st.StatusID == item.StatusID).StatusName;
+                                            if (item.StatusID == 1)
+                                            {
+                                                <span style="background-color:red;color:white;">@StatusName</span>
+                                            }
+                                            else if (item.StatusID == 1)
+                                            {
+                                                <span style="background-color:yellow;color:white;">@StatusName</span>
+                                            }
+                                            else if (item.StatusID == 2)
+                                            {
+                                                <span style="background-color:green;color:white;">@StatusName</span>
+                                            }
+                                             else if (item.StatusID == 3)
+                                            {
+                                                <span style="background-color:purple;color:white;">@StatusName</span>
+                                            } else if (item.StatusID == 4)
+                                            {
+                                                <span style="background-color:gold;color:white;">@StatusName</span>
+                                            }
+                                            else if (item.StatusID == 5)
+                                            {
+                                                <span style="background-color:saddlebrown;color:white;">@StatusName</span>
+                                            }
+                                            else if (item.StatusID == 6)
+                                            {
+                                                <span style="background-color:sandybrown;color:white;">@StatusName</span>
+                                            }
+                                         
+                                        }
+                                    </td>
+                                    <td style="text-align:center;">
+                                        @Html.DisplayFor(model => item.Related)
+                                    </td>
+
+                                    @if (item.Active == true)
+                                    {
+                                        <td style="background-color:green;color:white;text-align:center;">
+                                            <label>AKTİF</label>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td style="background-color:red;color:white;text-align:center;">
+                                            <label>PASİF</label>
+                                        </td>
+                                    }
+                                    <td style="text-align:center;">
+                                        <a asp-action="ProductEdit" asp-route-id="@item.ProductID" class="btn btn-primary">DÜZELT</a> |
+                                        <a asp-action="ProductDetails" asp-route-id="@item.ProductID" class="btn btn-info">DETAY</a> |
+                                        <a asp-action="ProductDelete" asp-route-id="@item.ProductID" class="btn btn-danger">SİL</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END SAMPLE TABLE PORTLET-->
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
+<!-- END CONTENT -->

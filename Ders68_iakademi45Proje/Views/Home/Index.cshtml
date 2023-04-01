@@ -1,0 +1,753 @@
+﻿@model MainPageModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+    iakademi45Context context = new iakademi45Context();
+
+    string CategoryName = "";
+}
+
+<!-- slider area start -->
+<div class="home-1-slider-area">
+    <div class="container">
+        <div class="row">
+        </div>
+        <div class="col-sm-12 col-md-9 col-lg-9 ">
+            <div class="h1-slider">
+                <!-- HOME SLIDER -->
+                <div class="slider-wrap">
+                    <div class="fullwidthbanner-container">
+                        <div class="home-1">
+                            <ul>
+                                @foreach (var item in Model.Slider)
+                                {
+                                    <li data-transition="random" data-slotamount="7" data-masterspeed="1000">
+                                        <img src="~/resimler/@item.PhotoPath" alt="slide">
+                                        <div class="tp-caption large_black sfr carousel-caption-inner" data-x="150" data-y="50" data-speed="1100" data-start="1100" data-easing="easeInOutBack"
+                                             style="background-color:black; color:#fff; font-size:18px; letter-spacing: 1px; text-transform: uppercase;">
+                                            @{
+                                                CategoryName = context.Categories.FirstOrDefault(c => c.CategoryID == item.CategoryID).CategoryName;
+                                                @CategoryName
+                                            }
+                                        </div>
+                                        <div class="tp-caption large_black sfr carousel-caption-inner" data-x="65" data-y="71" data-speed="1100" data-start="1400" data-easing="easeInOutBack"
+                                             style="  font-size: 60px; font-style:italic; font-weight: normal; /*text-transform: uppercase;*/background-color:black; color: #fff;font-weight: bold;">
+                                            @item.ProductName
+                                        </div>
+                                        <div class="tp-caption lfb carousel-caption-inner" data-x="130" data-y="160" data-speed="1300" data-start="1700" data-easing="easeInOutBack"
+                                             style="">
+                                            <a href="index.html#" class="s-btn" style="background: transparent; background-color:black; color: #fff; border: 1px solid #fff; font-weight:700; font-size: 12px; display: inline-block; padding:10px 18px; text-transform: uppercase;">Shopping Now</a>
+                                        </div>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- END HOME SLIDER -->
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3 ">
+            <div class="single-special-products">
+                <h3 class="sp-module-title"><span>GÜNÜN ÜRÜNÜ</span></h3>
+                <div class="all-sp-slides">
+                    <!-- SP-SINGLE Product -->
+                    <div class="sp-single">
+                        <div class="sp-img-area">
+                            <img class="first-img" src="~/resimler/@Model?.Sponsored.PhotoPath" alt="" />
+                            <img class="hover-img" src="~/resimler/@Model?.Sponsored.PhotoPath" alt="" />
+                            <div class="quick-view-detail">
+                                <a href="/Home/Details/@Model.Sponsored.ProductID">DETAYLAR</a>
+                            </div>
+                            <div class="sp-label-pro sp-label-pro-hot">Hot!</div>
+                        </div>
+                        <div class="sp-info-area">
+                            <h2 class="product-name"><a title="Dolor Dignissim Semper" href="/Home/Details/@Model.Sponsored.ProductID">@Model.Sponsored.ProductName</a></h2>
+                            <div class="product-rating">
+                                <div class="ratingbox" title="" Rating="3/5">
+                                    <div style="width:65px" class="stars-orange"></div>
+                                </div>
+                            </div>
+                            <p class="all-prices">
+                                <span class="sp-price main-price">@Model.Sponsored.UnitPrice TL</span>
+                            </p>
+                            <div class="sp-button">
+                                <div class="s-button">
+                                    <a href="/Home/CartProcess/@Model.Sponsored.ProductID" data-toggle="tooltip" data-placement="top" title="SEPETE EKLE" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                </div>
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                </div>
+                                <div class="s-button last-b ">
+                                    <a href="/Home/Details/@Model.Sponsored.ProductID" data-toggle="tooltip" data-placement="top" title="DETAYLAR" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SP-SINGLE Product -->
+                    <div class="sp-single">
+                        <div class="sp-img-area">
+                            <img class="first-img" src="~/img/all-sp/3.jpg" alt="" />
+                            <img class="hover-img" src="~/img/all-sp/4.jpg" alt="" />
+                            <div class="quick-view-detail">
+                                <a href="index.html#">View Detail</a>
+                            </div>
+                        </div>
+                        <div class="sp-info-area">
+                            <h2 class="product-name"><a title="Dolor Dignissim Semper" href="index.html#">Et Ultrices Posuere</a></h2>
+                            <div class="product-rating">
+                                <div class="ratingbox" title="" Rating="3/5">
+                                    <div style="width:45px" class="stars-orange"></div>
+                                </div>
+                            </div>
+                            <p class="all-prices">
+                                <span class="sp-price price-lessprice">$250.00</span>
+                                <span class="sp-price main-price">$189.00</span>
+                            </p>
+                            <div class="sp-button">
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                </div>
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                </div>
+                                <div class="s-button last-b ">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SP-SINGLE Product -->
+                    <div class="sp-single">
+                        <div class="sp-img-area">
+                            <img class="first-img" src="~/img/all-sp/5.jpg" alt="" />
+                            <img class="hover-img" src="~/img/all-sp/6.jpg" alt="" />
+                            <div class="quick-view-detail">
+                                <a href="index.html#">View Detail</a>
+                            </div>
+                            <div class="sp-label-pro sp-label-pro-new">New!</div>
+                        </div>
+                        <div class="sp-info-area">
+                            <h2 class="product-name"><a title="Dolor Dignissim Semper" href="index.html#">Dolor Dignissim Semper</a></h2>
+                            <div class="product-rating">
+                                <div class="ratingbox" title="">
+                                    <div style="width:25px" class="stars-orange"></div>
+                                </div>
+                            </div>
+                            <p class="all-prices">
+                                <span class="sp-price main-price">$389.00</span>
+                            </p>
+                            <div class="sp-button">
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                </div>
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                </div>
+                                <div class="s-button last-b ">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SP-SINGLE Product -->
+                    <div class="sp-single">
+                        <div class="sp-img-area">
+                            <img class="first-img" src="~/img/all-sp/1.jpg" alt="" />
+                            <img class="hover-img" src="~/img/all-sp/2.jpg" alt="" />
+                            <div class="quick-view-detail">
+                                <a href="index.html#">View Detail</a>
+                            </div>
+                            <div class="sp-label-pro sp-label-pro-hot">Hot!</div>
+                            <div class="sp-label-percentage">
+                                <span class="sp-PricediscountAmount">-$5.00</span>
+                            </div>
+
+                        </div>
+                        <div class="sp-info-area">
+                            <h2 class="product-name"><a title="Dolor Dignissim Semper" href="index.html#">Dolor Dignissim Semper</a></h2>
+                            <div class="product-rating">
+                                <div class="ratingbox" title="" Rating="3/5">
+                                    <div style="width:45px" class="stars-orange"></div>
+                                </div>
+                            </div>
+                            <p class="all-prices">
+                                <span class="sp-price price-lessprice">$250.00</span>
+                                <span class="sp-price main-price">$189.00</span>
+                            </p>
+                            <div class="sp-button">
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                </div>
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                </div>
+                                <div class="s-button last-b ">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SP-SINGLE Product -->
+                    <div class="sp-single">
+                        <div class="sp-img-area">
+                            <img class="first-img" src="~/img/all-sp/6.jpg" alt="" />
+                            <img class="hover-img" src="~/img/all-sp/7.jpg" alt="" />
+                            <div class="quick-view-detail">
+                                <a href="index.html#">View Detail</a>
+                            </div>
+                            <div class="sp-label-pro sp-label-pro-hot">Hot!</div>
+                            <div class="sp-label-percentage">
+                                <span class="sp-PricediscountAmount">-$9.00</span>
+                            </div>
+
+                        </div>
+                        <div class="sp-info-area">
+                            <h2 class="product-name"><a title="Dolor Dignissim Semper" href="index.html#">Semper Dolor Dignissim </a></h2>
+                            <div class="product-rating">
+                                <div class="ratingbox" title="" Rating="3/5">
+                                    <div style="width:45px" class="stars-orange"></div>
+                                </div>
+                            </div>
+                            <p class="all-prices">
+                                <span class="sp-price price-lessprice">$350.00</span>
+                                <span class="sp-price main-price">$289.00</span>
+                            </p>
+                            <div class="sp-button">
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                </div>
+                                <div class="s-button">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                </div>
+                                <div class="s-button last-b ">
+                                    <a href="index.html#" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- slider area end -->
+<!-- header area end -->
+<!-- new product area start -->
+<div class="new-products-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="n-full-products">
+                    <div class="all-p-title">
+                        <h3 style="background-color:green;color:white;">New Products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="all-new-p">
+                            <div class="all-new-single singal-p hom-1">
+                                @foreach (var item in Model.New)
+                                {
+                                    <!-- SP-SINGLE Product -->
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="sp-single">
+                                            <div class="sp-img-area">
+                                                <a href="/Home/Details/@item.ProductID">
+                                                    <img class="first-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;width:200px;" />
+                                                </a>
+                                                <a href="/Home/Details/@item.ProductID">
+                                                    <img class="hover-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;width:200px;" />
+                                                </a>
+                                                <div class="quick-view-detail">
+                                                    <a href="/Home/Details/@item.ProductID">DETAYLAR</a>
+                                                </div>
+                                                <div class="sp-label-pro sp-label-pro-hot" style="background-color:green;">YENİ</div>
+                                            </div>
+                                            <div class="sp-info-area">
+                                                <h2 class="product-name"><a title="@item.ProductName" href="/Home/Details/@item.ProductID">@item.ProductName </a></h2>
+                                                <div class="product-rating">
+                                                    <div class="ratingbox" title="" Rating="3/5">
+                                                        <div style="width:50px" class="stars-orange"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="all-prices">
+                                                    <span class="sp-price main-price">@item.UnitPrice TL</span>
+                                                </p>
+                                                <div class="sp-button">
+                                                    <div class="s-button">
+                                                        <a href="/Home/CartProcess/@item.ProductID" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                    </div>
+                                                    <div class="s-button">
+                                                        <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                                    </div>
+                                                    <div class="s-button last-b ">
+                                                        <a href="/Home/Details/@item.ProductID" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="new-bottom-area">
+                                <!-- bannar-1 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- özel ürünler area start -->
+<div class="new-products-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="n-full-products">
+                    <div class="all-p-title">
+                        <h3 style="background-color:darkturquoise;color:white;">Special Products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="all-new-p">
+                            <div class="all-new-single singal-p hom-1">
+                                @foreach (var item in Model.Special)
+                                {
+                                    <!-- SP-SINGLE Product -->
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="sp-single">
+                                            <div class="sp-img-area">
+                                                <img class="first-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <img class="hover-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <div class="quick-view-detail">
+                                                    <a href="/Home/Details/@item.ProductID">DETAYLAR</a>
+                                                </div>
+                                                <div class="sp-label-pro sp-label-pro-hot" style="background-color:darkturquoise;">YENİ</div>
+                                            </div>
+                                            <div class="sp-info-area">
+                                                <h2 class="product-name"><a title="@item.ProductName" href="/Home/Details/@item.ProductID">@item.ProductName </a></h2>
+                                                <div class="product-rating">
+                                                    <div class="ratingbox" title="" Rating="3/5">
+                                                        <div style="width:50px" class="stars-orange"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="all-prices">
+                                                    <span class="sp-price main-price">@item.UnitPrice TL</span>
+                                                </p>
+                                                <div class="sp-button">
+                                                    <div class="s-button">
+                                                        <a href="/Home/CartProcess/@item.ProductID" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                    </div>
+                                                    <div class="s-button">
+                                                        <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                                    </div>
+                                                    <div class="s-button last-b ">
+                                                        <a href="/Home/Details/@item.ProductID" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="new-bottom-area">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- indirimli ürünler area start -->
+<div class="new-products-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="n-full-products">
+                    <div class="all-p-title">
+                        <h3 style="background-color:dodgerblue;color:white;">Discounted Products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="all-new-p">
+                            <div class="all-new-single singal-p hom-1">
+                                @foreach (var item in Model.Discounted)
+                                {
+                                    <!-- SP-SINGLE Product -->
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="sp-single">
+                                            <div class="sp-img-area">
+                                                <img class="first-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <img class="hover-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <div class="quick-view-detail">
+                                                    <a href="/Home/Details/@item.ProductID">DETAYLAR</a>
+                                                </div>
+                                                <div class="sp-label-pro sp-label-pro-hot" style="background-color:dodgerblue;">%@item.Discount</div>
+                                            </div>
+                                            <div class="sp-info-area">
+                                                <h2 class="product-name"><a title="@item.ProductName" href="/Home/Details/@item.ProductID">@item.ProductName </a></h2>
+                                                <div class="product-rating">
+                                                    <div class="ratingbox" title="" Rating="3/5">
+                                                        <div style="width:50px" class="stars-orange"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="all-prices">
+                                                    <span class="sp-price main-price">@item.UnitPrice TL</span>
+                                                </p>
+                                                <div class="sp-button">
+                                                    <div class="s-button">
+                                                        <a href="/Home/CartProcess/@item.ProductID" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                    </div>
+                                                    <div class="s-button">
+                                                        <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                                    </div>
+                                                    <div class="s-button last-b ">
+                                                        <a href="/Home/Details/@item.ProductID" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="new-bottom-area">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- highlighted ürünler area start -->
+<div class="new-products-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="n-full-products">
+                    <div class="all-p-title">
+                        <h3 style="background-color:salmon;color:white;">Highlighted Products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="all-new-p">
+                            <div class="all-new-single singal-p hom-1">
+                                @foreach (var item in Model.Highlighted)
+                                {
+                                    <!-- SP-SINGLE Product -->
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="sp-single">
+                                            <div class="sp-img-area">
+                                                <img class="first-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <img class="hover-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <div class="quick-view-detail">
+                                                    <a href="/Home/Details/@item.ProductID">DETAYLAR</a>
+                                                </div>
+                                                <div class="sp-label-pro sp-label-pro-hot" style="background-color:salmon;">TALEP</div>
+                                            </div>
+                                            <div class="sp-info-area">
+                                                <h2 class="product-name"><a title="@item.ProductName" href="/Home/Details/@item.ProductID">@item.ProductName </a></h2>
+                                                <div class="product-rating">
+                                                    <div class="ratingbox" title="" Rating="3/5">
+                                                        <div style="width:50px" class="stars-orange"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="all-prices">
+                                                    <span class="sp-price main-price">@item.UnitPrice TL</span>
+                                                </p>
+                                                <div class="sp-button">
+                                                    <div class="s-button">
+                                                        <a href="/Home/CartProcess/@item.ProductID" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                    </div>
+                                                    <div class="s-button">
+                                                        <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                                    </div>
+                                                    <div class="s-button last-b ">
+                                                        <a href="/Home/Details/@item.ProductID" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="new-bottom-area">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- topseller  ürünler area start -->
+<div class="new-products-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="n-full-products">
+                    <div class="all-p-title">
+                        <h3 style="background-color:fuchsia;color:white;">Topseller Products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="all-new-p">
+                            <div class="all-new-single singal-p hom-1">
+                                @foreach (var item in Model.TopSeller)
+                                {
+                                    <!-- SP-SINGLE Product -->
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="sp-single">
+                                            <div class="sp-img-area">
+                                                <img class="first-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <img class="hover-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <div class="quick-view-detail">
+                                                    <a href="/Home/Details/@item.ProductID">DETAYLAR</a>
+                                                </div>
+                                                <div class="sp-label-pro sp-label-pro-hot" style="background-color:fuchsia;">TERCİH</div>
+                                            </div>
+                                            <div class="sp-info-area">
+                                                <h2 class="product-name"><a title="@item.ProductName" href="/Home/Details/@item.ProductID">@item.ProductName </a></h2>
+                                                <div class="product-rating">
+                                                    <div class="ratingbox" title="" Rating="3/5">
+                                                        <div style="width:50px" class="stars-orange"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="all-prices">
+                                                    <span class="sp-price main-price">@item.UnitPrice TL</span>
+                                                </p>
+                                                <div class="sp-button">
+                                                    <div class="s-button">
+                                                        <a href="/Home/CartProcess/@item.ProductID" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                    </div>
+                                                    <div class="s-button">
+                                                        <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                                    </div>
+                                                    <div class="s-button last-b ">
+                                                        <a href="/Home/Details/@item.ProductID" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="new-bottom-area">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- star  ürünler area start -->
+<div class="new-products-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="n-full-products">
+                    <div class="all-p-title">
+                        <h3 style="background-color:gold;color:white;">Star Products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="all-new-p">
+                            <div class="all-new-single singal-p hom-1">
+                                @foreach (var item in Model.Star)
+                                {
+                                    <!-- SP-SINGLE Product -->
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="sp-single">
+                                            <div class="sp-img-area">
+                                                <img class="first-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <img class="hover-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <div class="quick-view-detail">
+                                                    <a href="/Home/Details/@item.ProductID">DETAYLAR</a>
+                                                </div>
+                                                <div class="sp-label-pro sp-label-pro-hot" style="background-color:gold;">YILDIZ</div>
+                                            </div>
+                                            <div class="sp-info-area">
+                                                <h2 class="product-name"><a title="@item.ProductName" href="/Home/Details/@item.ProductID">@item.ProductName </a></h2>
+                                                <div class="product-rating">
+                                                    <div class="ratingbox" title="" Rating="3/5">
+                                                        <div style="width:50px" class="stars-orange"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="all-prices">
+                                                    <span class="sp-price main-price">@item.UnitPrice TL</span>
+                                                </p>
+                                                <div class="sp-button">
+                                                    <div class="s-button">
+                                                        <a href="/Home/CartProcess/@item.ProductID" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                    </div>
+                                                    <div class="s-button">
+                                                        <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                                    </div>
+                                                    <div class="s-button last-b ">
+                                                        <a href="/Home/Details/@item.ProductID" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="new-bottom-area">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- featured  ürünler area start -->
+<div class="new-products-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="n-full-products">
+                    <div class="all-p-title">
+                        <h3 style="background-color:orange;color:white;">Featured Products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="all-new-p">
+                            <div class="all-new-single singal-p hom-1">
+                                @foreach (var item in Model.Featured)
+                                {
+                                    <!-- SP-SINGLE Product -->
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="sp-single">
+                                            <div class="sp-img-area">
+                                                <img class="first-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <img class="hover-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <div class="quick-view-detail">
+                                                    <a href="/Home/Details/@item.ProductID">DETAYLAR</a>
+                                                </div>
+                                                <div class="sp-label-pro sp-label-pro-hot" style="background-color:orange;">FIRSAT</div>
+                                            </div>
+                                            <div class="sp-info-area">
+                                                <h2 class="product-name"><a title="@item.ProductName" href="/Home/Details/@item.ProductID">@item.ProductName </a></h2>
+                                                <div class="product-rating">
+                                                    <div class="ratingbox" title="" Rating="3/5">
+                                                        <div style="width:50px" class="stars-orange"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="all-prices">
+                                                    <span class="sp-price main-price">@item.UnitPrice TL</span>
+                                                </p>
+                                                <div class="sp-button">
+                                                    <div class="s-button">
+                                                        <a href="/Home/CartProcess/@item.ProductID" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                    </div>
+                                                    <div class="s-button">
+                                                        <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                                    </div>
+                                                    <div class="s-button last-b ">
+                                                        <a href="/Home/Details/@item.ProductID" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="new-bottom-area">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- notable  ürünler area start -->
+<div class="new-products-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 ">
+                <div class="n-full-products">
+                    <div class="all-p-title">
+                        <h3 style="background-color:teal;color:white;">Notable Products</h3>
+                    </div>
+                    <div class="row">
+                        <div class="all-new-p">
+                            <div class="all-new-single singal-p hom-1">
+                                @foreach (var item in Model.Notable)
+                                {
+                                    <!-- SP-SINGLE Product -->
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="sp-single">
+                                            <div class="sp-img-area">
+                                                <img class="first-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <img class="hover-img" src="~/resimler/@item.PhotoPath" alt="" style="height:200px;" />
+                                                <div class="quick-view-detail">
+                                                    <a href="/Home/Details/@item.ProductID">DETAYLAR</a>
+                                                </div>
+                                                <div class="sp-label-pro sp-label-pro-hot" style="background-color:teal;">FIRSAT</div>
+                                            </div>
+                                            <div class="sp-info-area">
+                                                <h2 class="product-name"><a title="@item.ProductName" href="/Home/Details/@item.ProductID">@item.ProductName </a></h2>
+                                                <div class="product-rating">
+                                                    <div class="ratingbox" title="" Rating="3/5">
+                                                        <div style="width:50px" class="stars-orange"></div>
+                                                    </div>
+                                                </div>
+                                                <p class="all-prices">
+                                                    <span class="sp-price main-price">@item.UnitPrice TL</span>
+                                                </p>
+                                                <div class="sp-button">
+                                                    <div class="s-button">
+                                                        <a href="/Home/CartProcess/@item.ProductID" data-toggle="tooltip" data-placement="top" title="add to cart" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-shopping-cart"></i> </a>
+                                                    </div>
+                                                    <div class="s-button">
+                                                        <a href="index.html#" data-toggle="tooltip" data-placement="top" title="add favorite" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-heart-o"></i> </a>
+                                                    </div>
+                                                    <div class="s-button last-b ">
+                                                        <a href="/Home/Details/@item.ProductID" data-toggle="tooltip" data-placement="top" title="view detail" class="black-tooltip add-to-cart all_src_icon"> <i class="fa fa-eye"></i> </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="new-bottom-area">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
