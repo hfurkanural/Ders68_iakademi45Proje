@@ -1,0 +1,76 @@
+﻿@model User
+@{
+    ViewData["Title"] = "RegisterEdit";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<!-- BEGIN PAGE CONTENT-->
+<div class="row">
+
+    <div class="col-md-2"></div>
+
+    <div class="col-md-8 ">
+        <!-- BEGIN SAMPLE FORM PORTLET-->
+        <div class="portlet box purple ">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i> PROFİL GÜNCELLEME FORMU
+                </div>
+                <div class="tools">
+                    <a href="" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                    <a href="" class="reload">
+                    </a>
+                    <a href="" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <form class="form-horizontal" role="form" action="/Home/RegistertEdit" method="post">
+                    <div class="form-body">
+
+                        <div class="form-group">
+                            <label asp-for="NameSurname" class="col-md-3 control-label"> Adınız Soyadınız</label>
+                            <div class="col-md-9">
+                                <input asp-for="NameSurname" class="form-control input-lg" placeholder="Adınız Soyadınız" required maxlength="100" />
+                            </div>
+                            <span asp-validation-for="NameSurname" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Email" class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input asp-for="Email" class="form-control input-lg" placeholder="Email" required maxlength="100" />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Password" class="col-md-3 control-label">Şifre</label>
+                            <div class="col-md-9">
+                                <input asp-for="Password" class="form-control input-lg" placeholder="Şifre" required maxlength="100" />
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Telephone" class="col-md-3 control-label">Telefon</label>
+                            <div class="col-md-9">
+                                <input asp-for="Telephone" class="form-control input-lg" placeholder="Telefon" maxlength="100" />
+                            </div>
+                            <span asp-validation-for="Telephone" class="text-danger"></span>
+                        </div>
+
+                        <input type="hidden" asp-for="UserID" />
+
+                        <input type="submit" name="name" value="KAYDET" class="btn btn-success" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- END SAMPLE FORM PORTLET-->
+    </div>
+</div>
+<!-- END PAGE CONTENT-->
